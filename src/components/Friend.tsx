@@ -3,10 +3,13 @@ import { Button } from "./Button";
 
 interface IProps {
   friend: IFriend;
+  selectedFriend: IFriend | null;
+  onSelection: (friend: IFriend) => void;
 }
-function Friend({ friend }: IProps) {
+function Friend({ friend, selectedFriend, onSelection }: IProps) {
+  const isSelected = selectedFriend?.id === friend.id;
   return (
-    <li>
+    <li className={isSelected ? "selected" : ""}>
       <img src={friend.image} />
       <h3>{friend.name}</h3>
       {friend.balance < 0 && (
@@ -20,7 +23,9 @@ function Friend({ friend }: IProps) {
         </p>
       )}
       {friend.balance === 0 && <p>You and {friend.name} are even</p>}
-      <Button>Select</Button>
+      <Button onClick={() => onSelection(friend)}>
+        {isSelected ? "Close" : "Select"}
+      </Button>
     </li>
   );
 }

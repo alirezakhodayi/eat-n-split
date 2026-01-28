@@ -1,12 +1,21 @@
-import { initialFriends } from "../data/data";
+import type { IFriend } from "../types/friend-interface";
 import { Friend } from "./Friend";
 
-function FriendsList() {
-  const friends = initialFriends;
+interface IProps {
+  friends: IFriend[];
+  selectedFriend: IFriend | null;
+  onSelection: (friend: IFriend) => void;
+}
+function FriendsList({ friends, selectedFriend, onSelection }: IProps) {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} key={friend.id} />
+        <Friend
+          key={friend.id}
+          friend={friend}
+          selectedFriend={selectedFriend}
+          onSelection={onSelection}
+        />
       ))}
     </ul>
   );
