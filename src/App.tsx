@@ -26,7 +26,7 @@ function App() {
 
   function handleSelection(friend: IFriend) {
     setSelectedFriend((selectedFriend) =>
-      selectedFriend?.id === friend.id ? null : friend
+      selectedFriend?.id === friend.id ? null : friend,
     );
     setShowAddFriend(false);
   }
@@ -36,8 +36,8 @@ function App() {
       friends.map((friend) =>
         friend.id === selectedFriend?.id
           ? { ...friend, balance: friend.balance + value }
-          : friend
-      )
+          : friend,
+      ),
     );
 
     setSelectedFriend(null);
@@ -58,6 +58,7 @@ function App() {
       </aside>
       {selectedFriend && (
         <SplitBillForm
+          key={selectedFriend.id}
           selectedFriend={selectedFriend}
           onSplitBill={handleSplitBill}
         />

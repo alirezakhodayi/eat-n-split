@@ -27,7 +27,7 @@ function AddFriendForm({ onAddFriend }: IProps) {
     const newFriend: IFriend = {
       id,
       name,
-      image: `${image}?=${id}`,
+      image: `${image}?=u${id}`,
       balance: 0,
     };
 

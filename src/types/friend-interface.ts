@@ -1,6 +1,6 @@
 export interface IFriend {
   id: number;
-  friendName: string;
+  name: string;
   image: string;
   balance: number;
 }
